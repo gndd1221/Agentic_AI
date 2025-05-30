@@ -6,7 +6,7 @@ import re  # 用於清理關鍵字
 # 直接設置 API 金鑰（請替換為你的實際金鑰）
 GEMINI_API_KEY = "api"  # 替換為你的 Gemini API 金鑰
 NEWSAPI_KEY = "api"        # 替換為你的 NewsAPI 金鑰
-use_model = "gemini-2.0-flash"  # 使用的模型名稱
+use_model = "gemini-2.5-flash-preview-04-17"  # 使用的模型名稱
 
 # 配置 Generative AI API 金鑰
 genai.configure(api_key=GEMINI_API_KEY)
@@ -30,7 +30,7 @@ def user_input_node(state: AskNewsState):
 def keyword_extraction_node(state: AskNewsState):
     model = genai.GenerativeModel(use_model)
     # 改進提示詞，要求返回逗號分隔的關鍵字
-    prompt = f"Extract keywords from the following text and return them as a comma-separated list (e.g., keyword1, keyword2, keyword3): {state['user_input']}"
+    prompt = f"Extract keywords from the following text and translate the keywords to englist return them as a comma-separated list (e.g., keyword1, keyword2, keyword3): {state['user_input']}"
     response = model.generate_content(prompt)
     print("Raw response from Gemini API:", response.text)
     
