@@ -2,10 +2,10 @@ import autogen
 import requests
 import google.generativeai as genai
 
-# === API 金鑰設定 ===
-GEMINI_API_KEY = "AIzaSyA2p-lQ4g0_lzPWvfZItGLICROqP3x13Uw"  # 請替換為你的金鑰
-NEWSAPI_KEY = "47bd6f57184e4991bd34f52bef81dcc0"
-use_model = "gemini-2.0-flash-lite"
+# 設置 API 金鑰
+GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"  # 替換為你的 Gemini API 金鑰
+NEWSAPI_KEY = "YOUR_NEWSAPI_KEY"        # 替換為你的 NewsAPI 金鑰
+use_model = "gemini-2.0-flash-lite"     # 使用的模型名稱
 
 # 配置 Generative AI API 金鑰
 genai.configure(api_key=GEMINI_API_KEY)
@@ -17,36 +17,42 @@ llm_config = {
     "api_type": "google"
 }
 
+# 自定義 get_human_input 函數，確保終端機中可以輸入
+def get_human_input(prompt: str) -> str:
+    print(prompt, end="", flush=True)  # 顯示提示並刷新輸出
+    return input()                     # 等待人類輸入
+
 # 定義代理
 user_proxy = autogen.UserProxyAgent(
     name="user_proxy",
     system_message="""你代表用戶，負責接收人類輸入並將其傳遞給群聊。
-    當 coordinator 要求提供新聞主題時，請在終端機中顯示 '請輸入新聞主題：'，並等待人類輸入。
-    將用戶輸入的主題傳回群聊。""",
-    human_input_mode="ALWAYS",  # 始終要求人類輸入
-    code_execution_config={"use_docker": False}
+    當 coordinator 要求提供新聞主題時，請提示 '請輸入新聞主題：' 並等待人類輸入。
+    將輸入的主題傳回群聊。""",
+    human_input_mode="ALWAYS",           # 始終要求人類輸入
+    code_execution_config={"use_docker": False},
+    get_human_input=get_human_input      # 使用自定義輸入函數
 )
 
 coordinator = autogen.AssistantAgent(
     name="coordinator",
     system_message="""你是一個新聞查詢系統的協調者，負責管理流程。你的任務是：
-    1. 向 user_proxy 發送消息，要求提供新聞主題，例如：'請提供一個新聞主題。'
+    1. 要求 user_proxy 提供新聞主題。
     2. 等待 user_proxy 回傳新聞主題。
-    3. 將新聞主題傳給 keyword_extractor 提取關鍵字。
-    4. 如果關鍵字少於 2 個，向 user_proxy 要求更多信息。
+    3. 要求 keyword_extractor 提取關鍵字。
+    4. 如果關鍵字少於 2 個，要求 user_proxy 提供更多信息。
     5. 將關鍵字傳給 news_searcher 搜索新聞。
     6. 如果新聞少於 3 篇，詢問 user_proxy 是否調整關鍵字。
     7. 將新聞傳給 summarizer 進行摘要。
     8. 將摘要傳給 translator 翻譯成中文。
     9. 將結果傳回給 user_proxy。
-    請確保在發送請求後等待回應，保持對話流程順暢。""",
+    請確保在發送請求後等待回應，對話流程順暢。""",
     llm_config=llm_config
 )
 
 keyword_extractor = autogen.AssistantAgent(
     name="keyword_extractor",
     system_message="""你的任務是從給定的文本中提取關鍵字並將其翻譯成英文，返回逗號分隔的列表（例如：keyword1, keyword2, keyword3）。
-    如果收到 coordinator 的指令，請處理指定的文本並返回結果。""",
+   部分。如果收到 coordinator 的指令，請處理指定的文本並返回結果。""",
     llm_config=llm_config
 )
 
