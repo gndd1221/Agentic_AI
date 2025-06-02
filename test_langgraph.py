@@ -196,7 +196,7 @@ def summary_and_translation_node(state: AskNewsState):
     if not articles:
         state["translated_summary"] = "無法取得新聞內容"
         print("🌐 摘要並進行翻譯：\n無法取得新聞內容")
-        send_line_broadcast(state["translated_summary"])
+        # send_line_broadcast(state["translated_summary"])
         return state
     
     articles_text = "\n\n".join([
@@ -217,7 +217,7 @@ def summary_and_translation_node(state: AskNewsState):
     state["translated_summary"] = response.text.strip()
     print("🌐 翻譯後的摘要：\n", state["translated_summary"])
     
-    # Send to Line
+
     send_line_broadcast(state["translated_summary"])
     return state
 
