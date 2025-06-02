@@ -13,10 +13,16 @@ from linebot.v3.messaging.models.text_message import TextMessage
 from pprint import pprint
 
 # === API Key Configuration ===
+<<<<<<< HEAD
 GEMINI_API_KEY = "AIzaSyA2p-lQ4g0_lzPWvfZItGLICROqP3x13Uw"  # Replace with your key
 NEWSAPI_KEY = "47bd6f57184e4991bd34f52bef81dcc0"        # Replace with your key
 LINE_ACCESS_TOKEN = "/ePl9N6VcYH6jUfU4v8VSl+fvRzeTqvGSA/jdVehtE47gyEct/8VKRQ327bjFLbCpuTLsM4azBlzkGbkHdC/h7e6pGTXKBOwboGPm6cEfKYNGF5QUQE8ClvqLkA/Pi5sSBcglgm3+AYReH7BPzNbHwdB04t89/1O/w1cDnyilFU="  # Replace with your Line Channel Access Token
 use_model = "gemini-2.5-flash-preview-04-17"  # Free-tier supported model
+=======
+GEMINI_API_KEY = "api_key"  # Replace with your key
+NEWSAPI_KEY = "api_key"  # Replace with your key
+use_model = "gemini-2.0-flash-lite"
+>>>>>>> 522d4bd8ae4c7f051378b7b2fcd6ea3c6743ea42
 
 genai.configure(api_key=GEMINI_API_KEY)
 
