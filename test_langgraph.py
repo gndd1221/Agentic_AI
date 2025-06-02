@@ -7,8 +7,8 @@ import spacy
 from datetime import datetime, timedelta
 
 # === API Key Configuration ===
-GEMINI_API_KEY = "AIzaSyA2p-lQ4g0_lzPWvfZItGLICROqP3x13Uw"  # Replace with your key
-NEWSAPI_KEY = "47bd6f57184e4991bd34f52bef81dcc0"  # Replace with your key
+GEMINI_API_KEY = "api_key"  # Replace with your key
+NEWSAPI_KEY = "api_key"  # Replace with your key
 use_model = "gemini-2.0-flash-lite"
 
 genai.configure(api_key=GEMINI_API_KEY)
