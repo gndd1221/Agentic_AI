@@ -13,7 +13,7 @@ from linebot.v3.messaging.models.text_message import TextMessage
 from pprint import pprint
 
 # === API Key Configuration ===
-GEMINI_API_KEY = "your keyda sdas das"  # Replace with your key
+GEMINI_API_KEY = "your keydasd asdas"  # Replace with your key
 NEWSAPI_KEY = "your key"        # Replace with your key
 LINE_ACCESS_TOKEN = "your key"  # Replace with your Line Channel Access Token
 use_model = "gemini-2.5-flash-preview-04-17"  # Free-tier supported model
