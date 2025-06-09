@@ -50,7 +50,7 @@ AskNews 是一個使用 NewsAPI 和 Gemini API 來獲取新聞文章並將其摘
 1. 運行程式：
 
    ```bash
-   python test.py
+   python AskNews.py
    ```
 
 2. 在Terminal輸入想查詢的新聞主題
