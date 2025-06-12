@@ -34,9 +34,9 @@ logger = logging.getLogger(__name__)
 
 
 # === API Key Configuration ===
-GEMINI_API_KEY = "AIzaSyD7WkG6O9aCf9aT-WNOxFk1djUboiSqp0k"
-NEWSAPI_KEY = "9f99a78a20464b61858d9ef831b76e0a"
-LINE_ACCESS_TOKEN = "/ePl9N6VcYH6jUfU4v8VSl+fvRzeTqvGSA/jdVehtE47gyEct/8VKRQ327bjFLbCpuTLsM4azBlzkGbkHdC/h7e6pGTXKBOwboGPm6cEfKYNGF5QUQE8ClvqLkA/Pi5sSBcglgm3+AYReH7BPzNbHwdB04t89/1O/w1cDnyilFU="
+GEMINI_API_KEY = "apikey"
+NEWSAPI_KEY = "apikey"
+LINE_ACCESS_TOKEN = "LINE_ACCESS_TOKEN"
 
 use_model = "gemini-2.5-flash-preview-04-17"
 
